@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Esta clase simula a una persona y la alimentación que tiene. Podremos hacerle
  * preguntas y estipular sus características básicas como altura, peso, edad
@@ -19,6 +19,10 @@ public class Persona
     private int altura;
     // Edad de la persona indicada en años.
     private int edad;
+    // Comida que la persona puede comer.
+    private Comida comida;
+    // Total de calorias acumuladas por la persona.
+    private int totalCalorias;
     /**
      * Constructor de la clase Persona. Crea una persona con las características
      * que se indican por parámetro.
@@ -36,5 +40,18 @@ public class Persona
         this.peso = peso;
         this.altura = altura;
         this.edad = edad;
+        comida = null;
+        totalCalorias = 0;
+    }
+    
+    public int comer(Comida comida)
+    {
+        totalCalorias += comida.getNumCalorias();
+        return comida.getNumCalorias();
+    }
+    
+    public int getCaloriasConsumidas()
+    { 
+        return totalCalorias;
     }
 }
