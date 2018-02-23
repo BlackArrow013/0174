@@ -23,6 +23,8 @@ public class Persona
     private Comida comida;
     // Total de calorias acumuladas por la persona.
     private int totalCalorias;
+    // El número de calorías límite que una persona puede ingerir según su metabolismo basal.
+    private int limiteComida;
     /**
      * Constructor de la clase Persona. Crea una persona con las características
      * que se indican por parámetro.
@@ -42,18 +44,17 @@ public class Persona
         this.edad = edad;
         comida = null;
         totalCalorias = 0;
-    }
-    
-    public int comer(Comida comida)
-    {
-        int limiteComida = 0;
-        int aDevolver = comida.getNumCalorias();
         if (genero) {
             limiteComida = 10*peso + 6*altura + 5*edad + 5;
         }
         else {
             limiteComida = 10*peso + 6*altura + 5*edad - 161;
         }
+    }
+
+    public int comer(Comida comida)
+    {
+        int aDevolver = comida.getNumCalorias();
         if (getCaloriasIngeridas() > limiteComida) {
             aDevolver = -1;
         }
@@ -62,9 +63,27 @@ public class Persona
         }        
         return aDevolver;
     }
-    
+
     public int getCaloriasIngeridas()
     { 
         return totalCalorias;
+    }
+
+    public String contestar(String pregunta)
+    {
+        String respuesta = "";
+        pregunta = pregunta.toLowerCase();
+        if (pregunta.contains(nombre.toLowerCase()) || getCaloriasIngeridas() > limiteComida) {
+            respuesta = pregunta.toUpperCase();
+        }
+        else {
+            if (pregunta.length() % 3 == 0) {
+                respuesta = "SI";
+            }
+            else {
+                respuesta = "NO";
+            }
+        }
+        return respuesta;
     }
 }
