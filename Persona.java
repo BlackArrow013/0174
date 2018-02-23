@@ -42,7 +42,7 @@ public class Persona
         this.peso = peso;
         this.altura = altura;
         this.edad = edad;
-        comida = null;
+        comida = new Comida("", 0);
         totalCalorias = 0;
         if (genero) {
             limiteComida = 10*peso + 6*altura + 5*edad + 5;
@@ -58,14 +58,17 @@ public class Persona
      * mostrará el número de calorías de la misma.
      * @param aDevolver - devuelve las calorías de la comida ingeridas, o -1 si no come nada.
      */
-    public int comer(Comida comida)
+    public int comer(Comida nombreComida)
     {
-        int aDevolver = comida.getNumCalorias();
+        int aDevolver = nombreComida.getNumCalorias();
         if (getCaloriasIngeridas() > limiteComida) {
             aDevolver = -1;
         }
         else {
-            totalCalorias += comida.getNumCalorias();
+            totalCalorias += nombreComida.getNumCalorias();
+            if (nombreComida.getNumCalorias() >= comida.getNumCalorias()) {
+                comida = nombreComida;
+            }
         }        
         return aDevolver;
     }
@@ -102,8 +105,16 @@ public class Persona
         return respuesta;
     }
     
-    public void getAlimentoMasCalorico()
+    public String getAlimentoMasCaloricoConsumido()
     {
-        
+        String alimentoMasCalorico = null;
+        if (comida.getNombreComida() != "") {
+            alimentoMasCalorico = comida.getNombreComida();
+        }
+        else {
+            System.out.println("Aún no he comido.");
+        }
+        System.out.println(alimentoMasCalorico);
+        return alimentoMasCalorico;
     }
 }
