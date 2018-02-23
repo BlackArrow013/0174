@@ -51,7 +51,13 @@ public class Persona
             limiteComida = 10*peso + 6*altura + 5*edad - 161;
         }
     }
-
+    
+    /**
+     * La persona se nutre comiendo. Come una comida creada en la clase Comida. Las calorías de las comidas son acumulativas, de modo que
+     * si come más de lo que su metabolismo basal le permite, no seguirá comiendo y se devolverá -1. Si la persona come la comida, se
+     * mostrará el número de calorías de la misma.
+     * @param aDevolver - devuelve las calorías de la comida ingeridas, o -1 si no come nada.
+     */
     public int comer(Comida comida)
     {
         int aDevolver = comida.getNumCalorias();
@@ -64,11 +70,19 @@ public class Persona
         return aDevolver;
     }
 
+    /**
+     * Devuelve el total de calorías ingeridas por la persona.
+     */
     public int getCaloriasIngeridas()
     { 
         return totalCalorias;
     }
 
+    /**
+     * La persona responde a la pregunta planteada en el parámetro con una respuesta simple, a saber, sí, no o con la misma pregunta
+     * en mayúsculas, y, además, la imprime por pantalla.
+     * @param pregunta - Se escribe la pregunta a plantear.
+     */
     public String contestar(String pregunta)
     {
         String respuesta = "";
@@ -84,6 +98,12 @@ public class Persona
                 respuesta = "NO";
             }
         }
+        System.out.println(respuesta);
         return respuesta;
+    }
+    
+    public void getAlimentoMasCalorico()
+    {
+        
     }
 }
