@@ -105,6 +105,10 @@ public class Persona
         return respuesta;
     }
     
+    /**
+     * Devuelve e imprime por pantalla la comida con más calorías ingerida por la persona. Si aún no ha comido, devuelve null e informa
+     * por pantalla que todavía no ha comido nada.
+     */
     public String getAlimentoMasCaloricoConsumido()
     {
         String alimentoMasCalorico = null;
