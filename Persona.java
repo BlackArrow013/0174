@@ -46,11 +46,24 @@ public class Persona
     
     public int comer(Comida comida)
     {
-        totalCalorias += comida.getNumCalorias();
-        return comida.getNumCalorias();
+        int limiteComida = 0;
+        int aDevolver = comida.getNumCalorias();
+        if (genero) {
+            limiteComida = 10*peso + 6*altura + 5*edad + 5;
+        }
+        else {
+            limiteComida = 10*peso + 6*altura + 5*edad - 161;
+        }
+        if (getCaloriasIngeridas() > limiteComida) {
+            aDevolver = -1;
+        }
+        else {
+            totalCalorias += comida.getNumCalorias();
+        }        
+        return aDevolver;
     }
     
-    public int getCaloriasConsumidas()
+    public int getCaloriasIngeridas()
     { 
         return totalCalorias;
     }
